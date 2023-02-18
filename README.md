@@ -67,5 +67,5 @@ $
 - [Python test cheatsheet](https://www.pythonsheets.com/notes/python-tests.html)
 
 # AUTHORS
-- Rufai Abdulwasii Oladimeji | rufaiwasiu5@gmail.com | [Github](https://github.com/Oladimeji088)
--  Robel Adane |robeltilahun169@gmail.com
+- Olaosebikan Fawas | lfawas6@gmail.com 
+-  Rania Zebur |ranizebur2@gmail.com
