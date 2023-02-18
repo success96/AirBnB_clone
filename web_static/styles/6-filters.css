@@ -1,0 +1,69 @@
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+}
+.filters {
+    background-color: white;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    display: flex;
+}
+ul {
+    list-style-type: none;
+}
+button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    position: relative;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+.locations {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    margin: auto;
+    position: relative;
+    border-right: 1px solid #DDDDDD;
+}
+.filters .amenities {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    margin: auto;
+    position: relative;
+}
+h3 {
+    font-weight: 600;
+}
+h4 {
+    font-weight: 400;
+    font-size: 14px;
+}
+.popover {
+    display: none;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    width: 100%;
+    border-radius: 0 0 4px 4px;
+    position: absolute;
+ }
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+    display: block;    
+}
+.popover h2 {
+    font-size: 16px;
+}
