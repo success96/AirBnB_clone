@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+
 import models
 """
 from models.user import User
@@ -12,7 +13,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 """
-
 
 class BaseModel:
     """Class from which all other classes will inherit"""
