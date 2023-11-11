@@ -137,8 +137,11 @@ class HBNBCommand(cmd.Cmd):
                 obj_id=f'{arg[0]}.{i_d[1]}'
                 if obj_id not in models.storage.all():
                     print('** no instance found **')
-                elif:
+                else:
                     print(models.storage.all()[obj_id])
+            elif args[1].startswith("destroy"):
+                i_d=arg[1].split('"')
+                obj_id=f"{args[0]}.{i_d[1]}"
 
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
