@@ -43,6 +43,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_object = eval (f'{arg[0]}')()
             print(new_object.id)
+            models.storage.save()
 
     def do_show(self, args):
         """
@@ -131,5 +132,13 @@ class HBNBCommand(cmd.Cmd):
             elif arg[1]=='count()':
                 lst=[str(v) for k,v in models.storage.all().items()if k.startswith(arg[0])]
                 print(len(lst))
+            elif arg[1].startswith('show'):
+                i_d=arg[1].split('"')
+                obj_id=f'{arg[0]}.{i_d[1]}'
+                if obj_id not in models.storage.all():
+                    print('** no instance found **')
+                elif:
+                    print(models.storage.all()[obj_id])
+
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
