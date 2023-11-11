@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     """Class for command interpreter."""
 
     prompt = "(hbnb) "
-    __classes = ["BaseModel", "Amenity", "State", "City", "Review", "Place"]
+    __classes = ["BaseModel", "Amenity", "State", "City", "Review", "Place", "User"]
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -123,8 +123,13 @@ class HBNBCommand(cmd.Cmd):
             print(obj.__dict__)
             obj.save()
 
-
-
-
-if __name__ == '__main__':
+    def default(self, args):
+        arg = args.split('.')
+        if arg[0] in self.__classes:
+            if arg[1]==  'all()':
+                self.do_all(arg[0])
+            elif arg[1]=='count()':
+                lst=[str(v) for k,v in models.storage.all().items()if k.startswith(arg[0])]
+                print(len(lst))
+if  __name__ == '__main__':
     HBNBCommand().cmdloop()
