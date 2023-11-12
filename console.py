@@ -153,12 +153,21 @@ class HBNBCommand(cmd.Cmd):
             elif arg[1].startswith('update'):
                 att = arg[1].split('"')
                 obj_id=f"{arg[0]}.{att[1]}"
+                print(arg[1][47:-1]) 
                 if obj_id not in models.storage.all():
                     print('** no instance found**')
-                att_id= att[1]
-                att_name = att[3]
-                att_value = att[5]
-                lst = f'{arg[0]} {att_id} {att_name} {att_value}' 
-                self.do_update(lst)
+                elif not (att[2].startswith(', {')):
+                        att_id= att[1]
+                        att_name = att[3]
+                        att_value = att[5]
+                        lst = f'{arg[0]} {att_id} {att_name} {att_value}'
+                        self.do_update(lst)
+                else:
+                    att_dict = eval(arg[1][47:-1])
+                    obj = models.storage.all()[obj_id]
+                    for k, v in att_dict.items():
+                        type_ = type(getattr(obj, k)) 
+                        setattr(obj, k, type_(v))
+                        models.storage.save()
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
