@@ -119,10 +119,13 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             obj = models.storage.all()[f'{arg[0]}.{arg[1]}']
-            att = arg[2]
-            obj.__dict__[att] = type(obj.__dict__[att])(arg[3])
-            print(obj.__dict__)
-            obj.save()
+            att_name = arg[2]
+            att_value = arg[3]
+            if att_value[0] == '"':
+                att_value = att_value[1:-1]
+            type_ = type(getattr(obj, att_name))           
+            setattr(obj, att_name, type_(att_value))
+            models.storage.save()
 
     def default(self, args):
         arg = args.split('.')
@@ -147,5 +150,15 @@ class HBNBCommand(cmd.Cmd):
                 else: 
                     del models.storage.all()[obj_id]
                 models.storage.save()
+            elif arg[1].startswith('update'):
+                att = arg[1].split('"')
+                obj_id=f"{arg[0]}.{att[1]}"
+                if obj_id not in models.storage.all():
+                    print('** no instance found**')
+                att_id= att[1]
+                att_name = att[3]
+                att_value = att[5]
+                lst = f'{arg[0]} {att_id} {att_name} {att_value}' 
+                self.do_update(lst)
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
