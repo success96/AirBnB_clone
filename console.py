@@ -132,16 +132,8 @@ class HBNBCommand(cmd.Cmd):
             elif arg[1]=='count()':
                 lst=[str(v) for k,v in models.storage.all().items()if k.startswith(arg[0])]
                 print(len(lst))
-            elif arg[1].startswith('show'):
-                i_d=arg[1].split('"')
-                obj_id=f'{arg[0]}.{i_d[1]}'
-                if obj_id not in models.storage.all():
-                    print('** no instance found **')
-                else:
-                    print(models.storage.all()[obj_id])
-            elif args[1].startswith("destroy"):
-                i_d=arg[1].split('"')
-                obj_id=f"{args[0]}.{i_d[1]}"
-
+            elif arg[1].startswith("show"):
+                i_d = arg[1].split('"')[1]
+        
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
