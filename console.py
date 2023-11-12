@@ -3,7 +3,7 @@
 
 
 import cmd
-from models.base_model  import BaseModel
+from models.base_mode import BaseModel
 import models
 from models.state import State
 from models.user import User
@@ -11,12 +11,15 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 
+
 class HBNBCommand(cmd.Cmd):
 
     """Class for command interpreter."""
 
-    prompt = "(hbnb) "
-    __classes = ["BaseModel", "Amenity", "State", "City", "Review", "Place", "User"]
+    prompt= "(hbnb)"
+    __classes = [
+            "BaseModel", "Amenity", "State", "City", "Review", "Place", "User"
+            ]
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -28,13 +31,12 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         return
-    
     def do_create(self, args):
         """
         This method Creates a new instance of BaseModel, 
         saves it (to the JSON file) and prints the id
         """
-        arg = args.split( )
+        arg = args.split()
 
         if len(arg) == 0:
             print("** class name missing **")
@@ -53,11 +55,11 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split()
 
         if len(arg) == 0:
-            print ("** class name missing **")
+            print("** class name missing **")
         elif arg[0] not in self.__classes:
-            print ("** class doesn't exist **")
+            print("** class doesn't exist **")
         elif len(arg) == 1:
-            print ("** instance id missing **")
+            print("** instance id missing **")
         elif f'{arg[0]}.{arg[1]}' not in models.storage.all():
             print("** no instance found **")
         else:
@@ -72,11 +74,11 @@ class HBNBCommand(cmd.Cmd):
             arg = args.split()
 
             if len(arg) ==0:
-                print ("** class name missing **")
+                print("** class name missing **")
             elif arg[0] not in self.__classes:
-                print ("** class doesn't exist **")
+                print("** class doesn't exist **")
             elif len(arg) == 1:
-                print ("** instance id missing **")
+                print("** instance id missing **")
             elif f'{arg[0]}.{arg[1]}' not in models.storage.all():
                 print("** no instance found **")
             else:
@@ -128,6 +130,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def default(self, args):
+        """This is the default behavior for cmd module when input is invalid"""
         arg = args.split('.')
         if arg[0] in self.__classes:
             if arg[1]==  'all()':
@@ -158,13 +161,30 @@ class HBNBCommand(cmd.Cmd):
             elif arg[1].startswith('update'):
                 att = arg[1].split('"')
                 obj_id=f"{arg[0]}.{att[1]}"
+                print(arg[1][47:-1]) 
                 if obj_id not in models.storage.all():
                     print('** no instance found**')
+<<<<<<< HEAD
                 att_id= att[1]
                 att_name = att[3]
                 att_value = att[5]
                 lst = f'{arg[0]} {att_id} {att_name} {att_value}' 
                 self.do_update(lst)
 >>>>>>> refs/remotes/origin/main
+=======
+                elif not (att[2].startswith(', {')):
+                        att_id= att[1]
+                        att_name = att[3]
+                        att_value = att[5]
+                        lst = f'{arg[0]} {att_id} {att_name} {att_value}'
+                        self.do_update(lst)
+                else:
+                    att_dict = eval(arg[1][47:-1])
+                    obj = models.storage.all()[obj_id]
+                    for k, v in att_dict.items():
+                        type_ = type(getattr(obj, k)) 
+                        setattr(obj, k, type_(v))
+                        models.storage.save()
+>>>>>>> 8ce22d9a69f39133b7db36d98e55c60c25215581
 if  __name__ == '__main__':
     HBNBCommand().cmdloop()
