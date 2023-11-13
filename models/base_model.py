@@ -8,11 +8,12 @@ import models
 class BaseModel:
     """Class from which all other classes will inherit"""
 
+    id = str(uuid.uuid4())
+    created_at = datetime.today()
+    update_at = datetime.today()
+
     def __init__(self, *args, **kwargs):
         """Initializes the  instance attributes"""
-        self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at == datetime.today()
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "__class__":
