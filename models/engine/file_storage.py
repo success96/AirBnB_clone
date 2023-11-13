@@ -11,24 +11,26 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class FileStorage:
-    """
-    This class serializes instances to a JSON file and deserializes 
-    JSON files to instances
-    """
+    """This class serializes instances to a JSON file
+       and deserializes JSON files to instances"""
     __file_path = "file.json"
     __objects = {}
+
     def all(self):
         """This method returns the dictionary __objects"""
         return FileStorage.__objects
 
     def new(self, obj):
-        """This method sets in __objects the obj with key <obj class name>.id"""
+        """This method sets in __objects the
+            obj with key <obj class name>.id"""
         objectClassName = obj.__class__.__name__
         FileStorage.__objects[f"{objectClassName}.{obj.id}"] = obj
 
     def save(self):
-        """This method serializes __objects to the JSON file (path: __file_path)"""
+        """This method serializes __objects
+        to the JSON file (path: __file_path)"""
         odict = FileStorage.__objects
         objectDict = {obj: odict[obj].to_dict() for obj in odict.keys()}
         with open(FileStorage.__file_path, "w") as f:
