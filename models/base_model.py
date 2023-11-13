@@ -10,10 +10,13 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes the  instance attributes"""
+        self.id = str(uuid4())
+        self.created_at = datetime.today()
+        self.updated_at == datetime.today()
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "__class__":
-                    pass
+                    continue
                 elif key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
@@ -40,7 +43,8 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary containing keys/values"""
         copy_dict = self.__dict__.copy()
-        copy_dict["__class__"] = self.__class__.__name__
         copy_dict["created_at"] = copy_dict["created_at"].isoformat()
         copy_dict["updated_at"] = copy_dict["updated_at"].isoformat()
+        copy_dict["__class__"] = self.__class__.__name__
+        copy_dict["id"] = self.id
         return copy_dict
