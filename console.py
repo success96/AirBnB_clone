@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-'''defines the console'''
+"""defines the console"""
 
-
+import re
+from shlex import split
 import cmd
-from models.base_mode import BaseModel
+from models.base_model import BaseModel
 import models
 from models.state import State
 from models.user import User
@@ -14,7 +15,7 @@ from models.place import Place
 
 class HBNBCommand(cmd.Cmd):
     """Class for command interpreter."""
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     __classes = [
             "BaseModel", "Amenity", "State", "City", "Review", "Place", "User"
             ]
@@ -25,10 +26,16 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """EOF signal to exit the program"""
+        print("")
         return True
+    
+    def help_quit(self):
+        """Modified the documentation output"""
+        print("Quit command to exit the program\n")
 
     def emptyline(self):
-        return
+        """Shouldn't execute anything"""
+        pass
 
     def do_create(self, args):
         """This method Creates a new instance of BaseModel,
