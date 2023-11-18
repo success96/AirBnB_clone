@@ -1,118 +1,126 @@
-/* Variables */
-:root {
-    /* color variables */
-    --borderColor: #DDDDDD;
-    --lightRed: #FF5A5F;
-    --btnTxt: #FFFFFF;
-    --dropdownBg: #FAFAFA;
-
-    /* font variables */
-    --headerFont: clamp(.8rem, 1.5vmax + .5rem, 14px);
-}
-
-.filters {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 70px;
-    width: 100%;
-    border: 1px solid var(--borderColor);
+.filters { background-color: white; border: 1px solid #DDDDDD; 
+    border-radius: 4px; display: flex; position: relative;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  .filters button {
+    background-color: #FF5A5F;
+    border: 0;
     border-radius: 4px;
-}
-
-.filters > button {
-    font-size: clamp(.5rem, 1.5vmax + .5rem, 1.3rem);
-    background-color: var(--lightRed);
-    color: var(--btnTxt);
+    color: #FFFFFF;
+    float: right;
+    font-size: 18px;
     height: 48px;
-    border-radius: 4px;
-    margin-left: auto; 
+    min-width: 150px;
     width: 20%;
-    margin-right: 30px;
-}
-
-.filters > button:hover {
-    opacity: 90%;
-}
-
-.locations, .amenities {
+    top: 0;
+    bottom: 0;
     position: relative;
+    margin: auto;
+  }
+  
+  .filters button:hover {
+    opacity: 0.9;
+  }
+  
+  .filters .locations,
+  .filters .amenities {
+    display: inline-block;
     height: 100%;
-    display: grid;
-    align-content: center;
-    justify-content: center;
+    position: relative;
     width: 25%;
-}
-
-.locations {
-    border-right: 1px solid var(--borderColor);
-}
-
-.amenities > h3, .locations > h3 {
-    font-weight: 600; 
-    font-size: var(--headerFont);
-    padding: 0 .5rem;
-}
-
-.amenities > h4, .locations > h4 {
-    font-weight: 400;
-    font-size: var(--headerFont);
-    padding: 0 .5rem;
-}
-
-.popover {
-    z-index: -5;
-    opacity: 0;
-    display: grid;
-    justify-content: center;
-    row-gap: .5rem;
+  }
+  
+  .filters .locations {
+    border-right: 1px solid #ddd;
+  }
+  
+  .filters .popover {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+    display: none;
     position: absolute;
-    top: 100%;
     width: 100%;
-    background-color: var(--dropdownBg);
-    border: 1px solid var(--borderColor);
-    border-radius: 4px;
-    padding: 1.5rem;
-    pointer-events: none;
-    transform: translateY(-.7rem);
-    transition: .3s ease-in-out opacity, .3s ease-in-out transform;
-}
-
-.filters > div:hover .popover {
-    pointer-events: auto;
-    transform: translateY(0);
-    z-index: 5;
-    opacity: 100;
-    transition: .3s ease-in-out opacity, .3s ease-in-out transform;
-}
-
-.popover > h2 {
-    font-size: 16px;
-    display: flex;
-    justify-content: left;
-    width: fit-content;
-}
-
-
-/* Media Queries */
-@media screen and (max-width: 396px) {
+  }
+  
+  .filters .locations:hover .popover,
+  .filters .amenities:hover .popover {
+    display: block;
+  }
+  
+  .filters .locations ul {
+    padding: 6px 0 6px 0;
+  }
+  
+  .filters .locations li {
+    margin: 0 auto 6px 3em;
+  }
+  
+  .filters .amenities li {
+    margin: 12px auto 12px 30px;
+  }
+  
+  @media only screen and (max-width: 1000px) {
     .filters {
-        /* background-color: antiquewhite; */
-        height: max-content;
-        row-gap: 1rem;
-        border: none;
+      width: 95%;
+      margin: 0 auto;
     }
-
-    .filters > * {
-        width: 100%;
+  }
+  
+  @media only screen and (max-width: 720px) {
+    .filters {
+      display: grid;
+      height: 210px;
     }
-    .locations, .amenities {
-        text-align: center;
-        border: none;
-        border: 1px solid var(--borderColor);
+  
+    .filters .locations,
+    .filters .amenities {
+      height: 70px;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
     }
-    .filters > button {
-        height: 2rem;
-        margin: 0 auto;
+  
+    .filters .locations:hover .popover,
+    .filters .amenities:hover .popover {
+      margin-left: auto;
+      position: relative;
+      width: 50%;
+      z-index: 1;
     }
-}
+  
+    .filters .amenities:hover {
+      border-top: 1px solid #ddd;
+    }
+  }
+  
+  .filters h2,
+  .filters h3,
+  .filters h4 {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  .filters h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 12px auto 0 30px;
+  }
+  
+  .filters h3 {
+    font-size: 1.17em;
+    font-weight: 600;
+    height: 50%;
+    padding: 15.5px 0 0 30px;
+  }
+  
+  .filters h4 {
+    font-size: 14px;
+    font-weight: 400;
+    height: 50%;
+    padding: 4.5px 0 12px 30px;
+  }
+  

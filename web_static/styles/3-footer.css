@@ -6,11 +6,14 @@
 
 footer {
     /* margin-top puts it always at page bottom */
-    margin-top: auto; 
-    display: grid;
-    place-items: center;
     background-color: var(--white);
     height: 60px;
     width: 100%;
     border-top: 1px solid var(--borderColor);
+    bottom: 0;
+    position: fixed;
+}
+
+.text {
+    text-align: center;
 }

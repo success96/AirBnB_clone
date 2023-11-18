@@ -1,61 +1,51 @@
-:root {
-    /* color variables */
-    --borderColor: #DDDDDD;
-    --btnRed: #FF5A5F;
-    --btnTxt: #FFFFFF;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    color: var(--globalColor);
-    font-size: var(--globalFontSize);
-    font-family: var(--globalFontFamily);
-    border: none;
-}
-
-.container .filters {
-    display: flex;
-    align-items: center;
-    height: 70px;
-    width: 100%;
-    border: 1px solid var(--borderColor);
-    border-radius: 4px;
-}
-
-.container .filters > button {
-    font-size: 18px;
-    background-color: var(--btnRed);
-    color: var(--btnTxt);
-    height: 48px;
-    width: 20%;
-    border-radius: 4px;
-    margin-right: 30px;
+.container {
+    max-width: 1000px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: auto;
     margin-left: auto;
 }
-
-.container .filters > button:hover {
-    opacity: 90%;
+.filters {
+    background-color: white;
+    position: relative;
+    border-radius: 4px;
+    display: flex;
+    border: 1px solid #DDDDDD;
 }
 
-.locations, .amenities {
+button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: 0;
+    border-radius: 4px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    position: relative;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+.locations {
     height: 100%;
     width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
+    margin: auto;
+    border-right: 1px solid #DDDDDD;
 }
-
-.locations {
-    border-right: 1px solid var(--borderColor);
+.amenities {
+    height: 100%;
+    width: 25%;
+    margin: auto;
 }
-
-.amenities > h3, .locations > h3 {
-    font-weight: 600;    
+h3 {
+    font-weight: 600;
 }
-
-.amenities > h4, .locations > h4 {
+h4 {
     font-weight: 400;
     font-size: 14px;
 }
